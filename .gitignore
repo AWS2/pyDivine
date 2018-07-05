@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# app numeros
+outfile.txt
+*/outfile.txt
+tmp_nums.txt
+err_nums.txt
+
