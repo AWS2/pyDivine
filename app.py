@@ -4,7 +4,7 @@ from random import randint
 
 
 def endevina():
-    secret = randint(1,100)
+    secret = 1#randint(1,100)
     intents = 0
     while True:
         intents += 1

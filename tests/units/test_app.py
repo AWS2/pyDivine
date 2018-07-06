@@ -23,10 +23,11 @@ class ConsoleAppTest(TestCase):
             cls.errfile.write( str(i)+"\n" )
         cls.tmpfile.close()
 
+    def setUp(self):
         # redirigim stdout per no liarla (monkey patch)
-        cls.sys_stdout = sys.stdout
-        cls.outfile = open("outfile.txt","w")
-        cls.stdout = cls.outfile
+        self.sys_stdout = sys.stdout
+        self.outfile = open("outfile.txt","w")
+        self.stdout = self.outfile
 
     @classmethod
     def tearDownClass(cls):
@@ -35,9 +36,11 @@ class ConsoleAppTest(TestCase):
         os.unlink( cls.errfile.name )
         # retornem stdout al sistema
         cls.stdout = cls.sys_stdout
+
+    def tearDown(self):
         # tanquem i esborrem arxiu de sortida stdout
-        cls.outfile.close()
-        os.unlink( cls.outfile.name )
+        self.outfile.close()
+        os.unlink( self.outfile.name )
 
     def test_zexisteix_funcio_endevina(self):
         self.assertTrue( hasattr(app, "endevina"), "La app ha de tenir una funció endevina()" )
@@ -69,7 +72,7 @@ class ConsoleAppTest(TestCase):
         # repetim el test molts cops per assegurar que no es fan randoms continus
         # en alguna de les 1000 iteracions hauria de fallar
         results = []
-        for j in range(5):
+        for j in range(20):
             intents = self.test_endevina_unitari()
             results.append( intents )
             print(intents)
